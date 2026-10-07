@@ -9,7 +9,7 @@ window.GRADUATION_INVITE = {
   shortName: "Lai Trung Tín",
   degree: "Kỹ sư",
   university: "ĐẠI HỌC CẦN THƠ",
-  faculty: "Khoa Chuyên Ngành",
+  faculty: "Khoa Học Máy Tính",
   phone: "0706942875",
 
   // 2. THỜI GIAN & ĐỊA ĐIỂM

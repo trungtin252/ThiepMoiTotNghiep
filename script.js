@@ -75,7 +75,7 @@
   setText('graduateName', conf.graduateName || 'LAI TRUNG TÍN');
   setText('degree', conf.degree || 'Kỹ sư');
   setText('university', conf.university || 'ĐẠI HỌC CẦN THƠ');
-  setText('faculty', conf.faculty || 'Khoa Chuyên Ngành');
+  setText('faculty', conf.faculty || 'Khoa Học Máy Tính');
   setText('message', conf.message);
   setText('quote', conf.quote ? `"${conf.quote.replace(/^"|"$/g, '')}"` : '');
   setText('signOff', conf.signOff || 'Rất mong được gặp bạn!');

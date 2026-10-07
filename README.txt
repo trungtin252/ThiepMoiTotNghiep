@@ -3,6 +3,7 @@ THIỆP MỜI LỄ TỐT NGHIỆP - TÂN KỸ SƯ LAI TRUNG TÍN (OCEAN AZURE ED
 
 1. THÔNG TIN SỰ KIỆN:
 - Tân Kỹ Sư: LAI TRUNG TÍN
+- Ngành đào tạo: Khoa Học Máy Tính
 - Đơn vị đào tạo: ĐẠI HỌC CẦN THƠ
 - Thời gian: 14:00, Thứ Bảy, ngày 31 tháng 10 năm 2026
   (Ghi chú: Lễ chính thức lúc 14:00. Bạn bè & người thân đến chúc mừng, chụp ảnh
