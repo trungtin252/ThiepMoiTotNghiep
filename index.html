@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f0f5fb">
+  <title>Thiệp Mời Lễ Tốt Nghiệp - Lai Trung Tín</title>
+  <meta name="description" content="Thiệp mời tham dự Lễ tốt nghiệp của Lai Trung Tín tại Đại học Cần Thơ.">
+
+  <!-- GOOGLE FONTS CHUẨN TIẾNG VIỆT 100% (VIETNAMESE SUBSET ĐẦY ĐỦ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Dancing+Script:wght@600;700&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+  <!-- CANVAS HIỆU ỨNG BỤI VÀNG & TƯƠNG TÁC CHẠM ĐIỆN THOẠI -->
+  <canvas id="sparkleCanvas" class="sparkle-canvas"></canvas>
+
+  <!-- LỚP PHÁO HOA KIM TUYẾN / NÓN CỬ NHÂN RƠI -->
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <!-- MÀN HÌNH MỞ PHONG BÌ THƯ HOÀNG GIA (XANH HY VỌNG & BẠC ÁNH KIM) -->
+  <div class="envelope-screen" id="openingScreen" aria-label="Mở thiệp mời">
+    <div class="envelope-ambient-glow"></div>
+    <div class="sun-flare flare-1"></div>
+    <div class="sun-flare flare-2"></div>
+    
+    <div class="envelope-wrap" id="envelopeWrap">
+      
+      <!-- PHONG BÌ THƯ -->
+      <div class="envelope" id="envelope">
+        <!-- NẮP TRÊN PHONG BÌ (FLAP) -->
+        <div class="envelope-flap" id="envelopeFlap"></div>
+        
+        <!-- THIỆP THÒ RA KHI MỞ -->
+        <div class="envelope-letter-preview">
+          <div class="preview-cap">🎓</div>
+          <p class="preview-kicker">GRADUATION INVITATION</p>
+          <p class="preview-name" id="envelopeName">Lai Trung Tín</p>
+          <span class="preview-line">✦</span>
+        </div>
+
+        <!-- THÂN PHONG BÌ -->
+        <div class="envelope-pocket"></div>
+
+        <!-- CON DẤU SÁP HOÀNG GIA (WAX SEAL) -->
+        <button class="wax-seal" id="waxSealBtn" type="button" aria-label="Chạm để mở thiệp">
+          <div class="seal-glow"></div>
+          <div class="seal-outer">
+            <svg class="seal-text-circle" viewBox="0 0 100 100">
+              <path id="sealPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+              <text font-size="10.2" font-weight="700" letter-spacing="2.8" fill="#fff">
+                <textPath href="#sealPath" startOffset="50%" text-anchor="middle">
+                  • GRADUATION INVITATION • OPEN
+                </textPath>
+              </text>
+            </svg>
+            <div class="seal-core">
+              <svg viewBox="0 0 64 46" class="seal-icon">
+                <path fill="#fff" d="M2.5 14 32 1.5l29.5 12.5L32 26.5 2.5 14Z"/>
+                <path fill="#fae4a8" d="M14 21.5v12c0 6 8.5 11 18 11s18-5 18-11v-12L32 29 14 21.5Z"/>
+                <path fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" d="M55.5 16.5v15"/>
+                <circle cx="55.5" cy="34.5" r="3" fill="#fff"/>
+              </svg>
+            </div>
+          </div>
+          <span class="seal-tap-hint">Chạm để mở thiệp ✨</span>
+        </button>
+      </div>
+
+      <div class="envelope-intro">
+        <p class="intro-kicker">THIỆP MỜI TRÂN TRỌNG</p>
+        <p class="intro-guest">Kính mời: <span id="openingGuest">Bạn và Gia đình</span></p>
+        <button class="open-direct-btn" id="openInviteBtn" type="button">
+          <span>Mở thiệp mời</span>
+          <span class="btn-arrow">↗</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NỘI DUNG CHÍNH CỦA THIỆP MỜI -->
+  <div class="page-shell" id="pageShell">
+    
+    <!-- THANH ĐIỀU HƯỚNG TỐI GIẢN TƯƠI SÁNG -->
+    <header class="top-nav">
+      <div class="brand">
+        <svg viewBox="0 0 32 24" class="brand-cap">
+          <path fill="#1f67b5" d="M1 7.5 16 1.2l15 6.3L16 13.8 1 7.5Z"/>
+          <path fill="#124379" d="M7 11.5v6c0 3 4 5.5 9 5.5s9-2.5 9-5.5v-6L16 15.2 7 11.5Z"/>
+          <path fill="none" stroke="#1f67b5" stroke-width="1.2" stroke-linecap="round" d="M28 8.5v8"/>
+          <circle cx="28" cy="18" r="1.5" fill="#1f67b5"/>
+        </svg>
+        <span>GRADUATION CEREMONY</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#thiep-moi">Thiệp Mời</a>
+        <a href="#thoi-gian">Thời Gian</a>
+        <a href="#chuc-mung">Lời Chúc</a>
+      </nav>
+      <div class="nav-right">
+        <button class="sound-toggle" id="soundToggle" type="button" aria-label="Bật/Tắt âm thanh">
+          <span class="sound-icon">♫</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- SECTION 1: TẤM THIỆP CHÍNH HOÀNG GIA (CÓ HIỆU ỨNG 3D TILT ĐIỆN THOẠI) -->
+    <section class="card-section" id="thiep-moi">
+      <div class="grand-card-container reveal" id="tiltCardContainer">
+        <div class="grand-card-aura"></div>
+        
+        <!-- TẤM THIỆP CAO CẤP (CÓ PHẢN QUANG HOLOGRAM THEO GÓC NGHIÊNG) -->
+        <div class="grand-card" id="tiltCard">
+          
+          <!-- LỚP PHẢN QUANG HOLOGRAM QUÉT THEO ĐỘ NGHIÊNG ĐIỆN THOẠI -->
+          <div class="hologram-sheen" id="hologramSheen"></div>
+
+          <!-- HOA VĂN GÓC MẠ VÀNG BẰNG VECTOR SVG -->
+          <svg class="corner-ornament top-left" viewBox="0 0 70 70">
+            <path d="M4 66 V18 C4 10.3 10.3 4 18 4 H66 M10 66 V20 C10 14.5 14.5 10 20 10 H66 M18 66 V26 C18 21.6 21.6 18 26 18 H66" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.9"/>
+            <circle cx="24" cy="24" r="3" fill="currentColor"/>
+            <path d="M4 4 L30 30" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/>
+          </svg>
+          <svg class="corner-ornament top-right" viewBox="0 0 70 70">
+            <path d="M66 66 V18 C66 10.3 59.7 4 52 4 H4 M60 66 V20 C60 14.5 55.5 10 50 10 H4 M52 66 V26 C52 21.6 48.4 18 44 18 H4" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.9"/>
+            <circle cx="46" cy="24" r="3" fill="currentColor"/>
+            <path d="M66 4 L40 30" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/>
+          </svg>
+          <svg class="corner-ornament bottom-left" viewBox="0 0 70 70">
+            <path d="M4 4 V52 C4 59.7 10.3 66 18 66 H66 M10 4 V50 C10 55.5 14.5 60 20 60 H66 M18 4 V44 C18 48.4 21.6 52 26 52 H66" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.9"/>
+            <circle cx="24" cy="46" r="3" fill="currentColor"/>
+            <path d="M4 66 L30 40" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/>
+          </svg>
+          <svg class="corner-ornament bottom-right" viewBox="0 0 70 70">
+            <path d="M66 4 V52 C66 59.7 59.7 66 52 66 H4 M60 4 V50 C60 55.5 55.5 60 50 60 H4 M52 4 V44 C52 48.4 48.4 52 44 52 H4" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.9"/>
+            <circle cx="46" cy="46" r="3" fill="currentColor"/>
+            <path d="M66 66 L40 40" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/>
+          </svg>
+
+          <!-- KHUNG VIỀN ĐÔI DÁT VÀNG TRÊN NỀN GIẤY MỸ THUẬT -->
+          <div class="card-inner-border">
+            
+            <!-- BIỂU TƯỢNG HUY HIỆU TỐT NGHIỆP TRANG TRỌNG -->
+            <div class="academic-crest">
+              <div class="laurel-wreath">
+                <!-- VÒNG NGUYỆT QUẾ MẠ VÀNG -->
+                <svg viewBox="0 0 100 80" class="laurel-svg">
+                  <path fill="currentColor" opacity="0.95" d="M16 58c-4-8-3-19 3-27 2-3 5-6 8-8-1 4-1 9 1 13-6 5-9 14-8 22h-4zm68 0c4-8 3-19-3-27-2-3-5-6-8-8 1 4 1 9-1 13 6 5 9 14 8 22h4zM27 38c-3-6-2-15 3-21 2-2 5-5 8-6-1 3-1 7 1 10-5 4-7 11-7 17h-5zm46 0c3-6 2-15-3-21-2-2-5-5-8-6 1 3 1 7-1 10 5 4 7 11 7 17h5zM38 23c-2-5-1-12 2-17 2-2 4-4 7-5-1 3 0 6 1 8-4 3-6 9-6 14h-4zm24 0c2-5 1-12-2-17-2-2-4-4-7-5 1 3 0 6-1 8 4 3 6 9 6 14h4z"/>
+                  <circle cx="50" cy="74" r="2.5" fill="currentColor"/>
+                </svg>
+                <div class="crest-cap-icon">
+                  <svg viewBox="0 0 64 46" class="cap-svg">
+                    <path fill="currentColor" d="M2.5 14 32 1.5l29.5 12.5L32 26.5 2.5 14Z"/>
+                    <path fill="currentColor" opacity="0.85" d="M14 21.5v12c0 6 8.5 11 18 11s18-5 18-11v-12L32 29 14 21.5Z"/>
+                    <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M55.5 16.5v15"/>
+                    <circle cx="55.5" cy="34.5" r="3" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="crest-banner">
+                <span>CLASS OF <strong id="classYear">2026</strong></span>
+              </div>
+            </div>
+
+            <!-- TIÊU ĐỀ THIỆP -->
+            <p class="card-kicker">LỄ TỐT NGHIỆP · GRADUATION CEREMONY</p>
+            <h2 class="card-headline">THIỆP MỜI DỰ LỄ</h2>
+
+            <!-- ĐỐI TƯỢNG MỜI -->
+            <div class="guest-honor-box">
+              <span class="guest-prefix">Trân trọng kính mời:</span>
+              <h3 class="guest-name" id="guestName">Bạn và Gia đình</h3>
+              <p class="guest-subtext">Đến chung vui và chia sẻ cột mốc đáng nhớ trong ngày nhận bằng tốt nghiệp</p>
+            </div>
+
+            <div class="divider-gold">
+              <span class="line"></span>
+              <span class="gem">✦</span>
+              <span class="line"></span>
+            </div>
+
+            <!-- TÊN TÂN KỸ SƯ: LAI TRUNG TÍN -->
+            <div class="graduate-highlight">
+              <span class="degree-badge" id="degree">Kỹ sư</span>
+              <h1 class="graduate-name" id="graduateName">LAI TRUNG TÍN</h1>
+            </div>
+
+            <!-- THÔNG TIN ĐƠN VỊ: ĐẠI HỌC CẦN THƠ -->
+            <div class="institution-details">
+              <p class="university" id="university">ĐẠI HỌC CẦN THƠ</p>
+              <p class="faculty" id="faculty">Khoa Chuyên Ngành</p>
+            </div>
+
+            <!-- NÚT HÀNH ĐỘNG NHANH -->
+            <div class="card-actions">
+              <a class="btn-gold" href="#thoi-gian">
+                <span>Xem thời gian &amp; Địa điểm</span>
+                <i>↓</i>
+              </a>
+              <button class="btn-royal" id="heroConfirmBtn" type="button">
+                <span>✓ Xác nhận tham dự</span>
+              </button>
+            </div>
+
+            <div class="card-stamp">
+              <div class="stamp-circle">
+                <span>OFFICIAL</span>
+                <strong>INVITATION</strong>
+                <small>2026</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      <!-- HƯỚNG DẪN NGHIÊNG ĐIỆN THOẠI TRÊN MOBILE -->
+      <div class="mobile-tilt-hint" id="mobileTiltHint">
+        <span>✨ Nghiêng nhẹ điện thoại hoặc chạm màn hình để tạo ánh sao ✨</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THÔNG ĐIỆP & LỜI TRI ÂN -->
+    <section class="message-section" id="thong-diep">
+      <div class="section-container narrow reveal">
+        <div class="quote-symbol">“</div>
+        <p class="section-tag">A NEW CHAPTER BEGINS</p>
+        <h2 class="section-title">Một chặng đường khép lại<br><em>Một hành trình mới bắt đầu</em></h2>
+        <div class="letter-body">
+          <p class="lead-text" id="message">
+            Một chặng đường đã khép lại và một hành trình mới sắp bắt đầu. Sự hiện diện và lời chúc của bạn sẽ là niềm hạnh phúc to lớn, là một phần kỷ niệm thật đẹp trong ngày tốt nghiệp của tôi.
+          </p>
+          <p class="quote-text" id="quote">
+            "Không chỉ là ngày nhận bằng, mà là ngày đánh dấu những nỗ lực đã trở thành một kỷ niệm thật đáng tự hào."
+          </p>
+        </div>
+        <div class="signature-wrap">
+          <span class="sign-label" id="familyNote">Trân trọng kính mời</span>
+          <p class="handwriting" id="graduateSignature">Lai Trung Tín</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THỜI GIAN & ĐỊA ĐIỂM + ĐẾM NGƯỢC -->
+    <section class="details-section" id="thoi-gian">
+      <div class="section-container">
+        
+        <div class="center-heading reveal">
+          <p class="section-tag">SAVE THE DATE</p>
+          <h2 class="section-title">Thời Gian &amp; Địa Điểm</h2>
+          <p class="section-subtitle">Rất mong được đón tiếp bạn trong ngày vui rực rỡ này</p>
+        </div>
+
+        <!-- THẺ THÔNG TIN TƯƠI SÁNG -->
+        <div class="event-cards-grid reveal">
+          <!-- CARD THỜI GIAN -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="card-icon-wrap">
+                <span class="card-num">01</span>
+              </div>
+              <span class="info-label">THỜI GIAN DIỄN RA</span>
+            </div>
+            <div class="info-card-body">
+              <div class="main-val gold-text" id="time">14:00</div>
+              <h3 class="event-date" id="displayDate">Thứ Bảy, 31 tháng 10 năm 2026</h3>
+              <p class="event-note highlight-note" id="timeNote">
+                Lễ chính thức lúc 14:00. Mọi người đến chúc mừng, chụp ảnh có thể đến trễ hơn một chút (khoảng 15:00 - 16:30) vì phần đầu phải chờ làm lễ trong hội trường.
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD ĐỊA ĐIỂM -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="card-icon-wrap">
+                <span class="card-num">02</span>
+              </div>
+              <span class="info-label">ĐỊA ĐIỂM TỔ CHỨC</span>
+            </div>
+            <div class="info-card-body">
+              <div class="main-val gold-text" id="venue">Hội trường Rùa, Đại học Cần Thơ</div>
+              <h3 class="event-address" id="address">Khu II, Đường 3/2, Xuân Khánh, Ninh Kiều, TP. Cần Thơ</h3>
+              <p class="event-note">Có bãi đỗ xe máy &amp; ô tô rộng rãi, có bảng chỉ dẫn vào hội trường Rùa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- KHỐI LIÊN HỆ ĐIỆN THOẠI TRỰC TIẾP CHO KHÁCH MỜI -->
+        <div class="contact-card reveal">
+          <div class="contact-icon">📞</div>
+          <div class="contact-info">
+            <span class="contact-label">LIÊN HỆ KHI ĐẾN BUỔI LỄ:</span>
+            <strong class="contact-phone" id="phoneDisplay">Lai Trung Tín: 0706.942.875</strong>
+          </div>
+          <div class="contact-actions">
+            <a class="contact-btn call-btn" id="callBtn" href="tel:0706942875">
+              <span>Gọi điện</span>
+            </a>
+            <a class="contact-btn zalo-btn" id="zaloBtn" href="https://zalo.me/0706942875" target="_blank" rel="noopener">
+              <span>Nhắn Zalo</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ĐỒNG HỒ ĐẾM NGƯỢC HOÀNG KIM TƯƠI SÁNG -->
+        <div class="luxury-countdown-box reveal" aria-live="polite">
+          <div class="countdown-header">
+            <span class="ornament-gem">✦</span>
+            <span class="cd-title">CÙNG ĐẾM NGƯỢC ĐẾN NGÀY TỐT NGHIỆP</span>
+            <span class="ornament-gem">✦</span>
+          </div>
+          <div class="countdown-units">
+            <div class="cd-item">
+              <div class="cd-number-box"><strong id="days">00</strong></div>
+              <span class="cd-label">NGÀY</span>
+            </div>
+            <span class="cd-sep">:</span>
+            <div class="cd-item">
+              <div class="cd-number-box"><strong id="hours">00</strong></div>
+              <span class="cd-label">GIỜ</span>
+            </div>
+            <span class="cd-sep">:</span>
+            <div class="cd-item">
+              <div class="cd-number-box"><strong id="minutes">00</strong></div>
+              <span class="cd-label">PHÚT</span>
+            </div>
+            <span class="cd-sep">:</span>
+            <div class="cd-item">
+              <div class="cd-number-box"><strong id="seconds">00</strong></div>
+              <span class="cd-label">GIÂY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CÁC NÚT THAO TÁC TIỆN ÍCH -->
+        <div class="action-buttons-wrap reveal">
+          <a class="action-btn" id="mapLink" href="https://www.google.com/maps/search/?api=1&query=Hội+trường+Rùa+Đại+học+Cần+Thơ" target="_blank" rel="noopener">
+            <span class="btn-ico">⌖</span>
+            <span>Chỉ đường Google Maps</span>
+          </a>
+          <button class="action-btn" id="calendarBtn" type="button">
+            <span class="btn-ico">📅</span>
+            <span>Lưu vào Lịch nhắc hẹn</span>
+          </button>
+          <button class="action-btn primary-action" id="confirmBtn" type="button">
+            <span class="btn-ico">✓</span>
+            <span id="confirmBtnText">Tôi sẽ tham dự</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: TƯƠNG TÁC TUNG NÓN & SỔ LỜI CHÚC MỪNG -->
+    <section class="celebration-section" id="chuc-mung">
+      <div class="section-container reveal">
+        
+        <!-- KHỐI TUNG NÓN CỬ NHÂN TƯƠNG TÁC CHẠM ĐIỆN THOẠI -->
+        <div class="cap-toss-card reveal">
+          <div class="toss-icon">🎓</div>
+          <h3>Cùng chúc mừng Tân Kỹ Sư Lai Trung Tín!</h3>
+          <p>Chạm vào nút bên dưới để cùng tung nón cử nhân và bắn pháo hoa rực rỡ chúc mừng cột mốc này nhé!</p>
+          <button class="toss-btn" id="tossCapBtn" type="button">
+            <span>🎓 Chạm Tung Nón &amp; Pháo Hoa</span>
+            <span class="toss-sparkle">✨</span>
+          </button>
+        </div>
+
+        <!-- SỔ LỜI CHÚC TRỰC TUYẾN (GUESTBOOK) -->
+        <div class="guestbook-container reveal">
+          <div class="center-heading">
+            <p class="section-tag">WISHES &amp; CONGRATULATIONS</p>
+            <h2 class="section-title">Gửi Lời Chúc Riêng Đến Trung Tín</h2>
+            <p class="section-subtitle">Lời chúc chân thành của bạn sẽ được gửi riêng đến Tân Kỹ Sư Lai Trung Tín</p>
+          </div>
+
+          <!-- FORM GỬI LỜI CHÚC RIÊNG TƯ -->
+          <form class="wish-form" id="wishForm">
+            <div class="form-row">
+              <input type="text" id="wishSender" class="wish-input" placeholder="Tên của bạn..." required maxlength="40">
+            </div>
+            <div class="form-row">
+              <textarea id="wishMessage" class="wish-textarea" placeholder="Nhập lời chúc tốt đẹp gửi đến Tân Kỹ Sư Lai Trung Tín..." rows="4" required maxlength="500"></textarea>
+            </div>
+            <button type="submit" class="submit-wish-btn" id="sendWishBtn">
+              <span>Gửi lời chúc yêu thương</span>
+              <span class="heart-icon">💖</span>
+            </button>
+          </form>
+
+          <!-- KHỐI THÔNG BÁO SAU KHI GỬI THÀNH CÔNG (ẨN MẶC ĐỊNH) -->
+          <div class="wish-success-card" id="wishSuccessCard" style="display: none;">
+            <div class="success-icon" style="font-size: 42px; margin-bottom: 10px;">💌</div>
+            <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--gold-dark); margin-bottom: 8px;">Đã gửi lời chúc thành công!</h3>
+            <p style="color: var(--text-muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 16px;">
+              Cảm ơn bạn rất nhiều! Lời chúc của bạn đã được gửi riêng đến Tân Kỹ Sư Lai Trung Tín.
+            </p>
+            <button type="button" class="btn-royal" id="sendAnotherWishBtn" style="display: inline-block; padding: 8px 18px; font-size: 13px;">
+              <span>Gửi thêm lời chúc khác</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: LỜI KẾT & CHIA SẺ THIỆP -->
+    <footer class="closing-footer">
+      <div class="section-container narrow reveal">
+        <div class="closing-crest">
+          <svg viewBox="0 0 64 46" class="footer-cap-svg">
+            <path fill="currentColor" d="M2.5 14 32 1.5l29.5 12.5L32 26.5 2.5 14Z"/>
+            <path fill="currentColor" opacity="0.85" d="M14 21.5v12c0 6 8.5 11 18 11s18-5 18-11v-12L32 29 14 21.5Z"/>
+            <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M55.5 16.5v15"/>
+            <circle cx="55.5" cy="34.5" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <h2 class="closing-title" id="signOff">Rất mong được gặp bạn!</h2>
+        <p class="closing-desc">Sự hiện diện của bạn là niềm vinh dự và kỷ niệm đẹp đẽ nhất trong ngày lễ tốt nghiệp của tôi.</p>
+        <div class="footer-rule"></div>
+        <p class="copyright">Lễ Tốt Nghiệp · Lai Trung Tín · Đại học Cần Thơ</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- NÚT PHÁT NHẠC NỀN GÓC PHẢI -->
+  <button class="floating-music-btn" id="floatingMusicBtn" type="button" aria-label="Bật hoặc tắt nhạc nền">
+    <div class="disc-wrap">
+      <span class="disc-note">♫</span>
+    </div>
+  </button>
+  <audio id="musicPlayer" loop preload="none"></audio>
+
+  <!-- THÔNG BÁO TOAST THỜI THƯỢNG -->
+  <div class="toast-popup" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon">✨</span>
+    <span class="toast-msg">Thông báo</span>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

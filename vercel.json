@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/((?!assets|style\\.css|script\\.js|config\\.js|wishes\\.json|tao-link|api|favicon).*)$",
+      "destination": "/index.html"
+    }
+  ]
+}

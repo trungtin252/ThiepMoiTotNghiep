@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Công Cụ Tạo Link Thiệp Mời - Kỹ Sư Lai Trung Tín</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f3f7fd;
+      --card-bg: #ffffff;
+      --primary: #15559a;
+      --primary-light: #2575fc;
+      --accent-gold: #c59b44;
+      --accent-gold-light: #dfba73;
+      --text: #172b4d;
+      --text-muted: #5e6c84;
+      --border: #dbe4f0;
+      --success: #10b981;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(21, 85, 154, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(21, 85, 154, 0.08);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      border: 1px solid rgba(21, 85, 154, 0.15);
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fafcff;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      font-size: 0.92rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button, .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #15559a 0%, #2575fc 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(21, 85, 154, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(21, 85, 154, 0.35);
+    }
+
+    .btn-secondary {
+      background: #e9f2fd;
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: #d6e8fb;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #c59b44 0%, #dfba73 100%);
+      color: #ffffff;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      border-radius: 6px;
+    }
+
+    /* BẢNG KẾT QUẢ */
+    .result-section {
+      display: none;
+    }
+
+    .result-section.active {
+      display: block;
+    }
+
+    .guest-card {
+      background: #fafcff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .guest-card:hover {
+      border-color: #bcd5f5;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(21, 85, 154, 0.05);
+    }
+
+    .guest-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .guest-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .guest-slug {
+      font-size: 0.8rem;
+      background: #eef3f9;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    .guest-link-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #dbe4f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      overflow: hidden;
+    }
+
+    .guest-url {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #2575fc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    .guest-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* TOAST THÔNG BÁO */
+    .toast-box {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+    }
+
+    .toast-box.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .info-callout {
+      background: #eef6ff;
+      border-left: 4px solid var(--primary-light);
+      padding: 14px 16px;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.88rem;
+      color: #172b4d;
+      margin-bottom: 20px;
+    }
+
+    .info-callout strong {
+      color: var(--primary);
+    }
+
+    .code-preview {
+      background: #111827;
+      color: #93c5fd;
+      padding: 14px;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin-top: 10px;
+    }
+
+    /* KHỐI HIỂN THỊ LỜI CHÚC TRONG TRANG QUẢN LÝ */
+    .wish-admin-item {
+      background: #fafcff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .wish-admin-item:hover {
+      border-color: #bcd5f5;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(21, 85, 154, 0.05);
+    }
+
+    .wish-admin-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .wish-admin-sender {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .wish-admin-time {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #eef3f9;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .wish-admin-body {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.55;
+      background: #ffffff;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #edf2f7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header class="header">
+      <span class="badge">🎓 Tiện Ích Tốt Nghiệp 2026</span>
+      <h1>Công Cụ Tạo Link Mời Riêng Từng Người</h1>
+      <p class="subtitle">Tự động tạo link dạng <strong>domain.com/ten</strong> hoặc <strong>domain.com/?to=ten</strong> kèm mẫu tin nhắn Zalo gửi trong 1 chạm</p>
+    </header>
+
+    <div class="info-callout">
+      💡 <strong>Mẹo hay:</strong> Bạn có thể tự dùng trang này để tạo link bất kỳ lúc nào, <strong>hoặc</strong> chỉ cần sao chép danh sách khách mời gửi vào tin nhắn cho tôi, tôi sẽ tự nạp vào thiệp giúp bạn trong tích tắc!
+    </div>
+
+    <!-- FORM NHẬP LIỆU -->
+    <div class="card">
+      <div class="card-title">📝 1. Cấu hình & Nhập danh sách khách mời</div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="domainInput">Tên miền website (Domain):</label>
+          <input type="text" id="domainInput" placeholder="https://thiep-totnghiep.vercel.app">
+          <div class="hint">Mặc định đã lấy tên miền hiện tại của website.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkFormat">Định dạng đường link:</label>
+          <select id="linkFormat">
+            <option value="query-clean" selected>⭐ Link Tức Thì: domain.com/?to=Anh+Nam (Mặc định - Dùng ngay không cần sửa code)</option>
+            <option value="query-encoded">Link Tức Thì (Mã hóa URL): domain.com/?to=Anh+Nam (Chuẩn ASCII)</option>
+            <option value="slug">Link Rút Gọn: domain.com/anh-nam (Cần nạp config.js)</option>
+          </select>
+          <div class="hint">Gửi link này khách mở lên sẽ thấy thiệp ghi đúng tên trang trọng!</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="guestListInput">Danh sách người mời (mỗi người 1 dòng):</label>
+        <textarea id="guestListInput" placeholder="Ví dụ:
+Anh Nam
+Bác Ba và Gia đình
+Thầy Hùng
+Cô Mai
+Bạn Thân Hải Đăng
+Gia đình Chú Sáu"></textarea>
+        <div class="hint">Hệ thống sẽ tự động chuyển tiếng Việt thành tên đường dẫn không dấu (ví dụ: "Bác Ba và Gia đình" &rarr; "/bac-ba-va-gia-dinh").</div>
+      </div>
+
+      <div class="form-group">
+        <label for="zaloMessageTpl">Mẫu tin nhắn gửi kèm qua Zalo / Messenger:</label>
+        <textarea id="zaloMessageTpl" style="min-height: 90px;">Kính gửi {TEN_KHACH},
+
+Lai Trung Tín trân trọng kính mời {TEN_KHACH} đến tham dự Lễ tốt nghiệp Kỹ sư của Tín tại Đại học Cần Thơ vào ngày 31/10/2026.
+
+Sự hiện diện của {TEN_KHACH} là niềm vinh dự và niềm vui rất lớn đối với Tín!
+
+Kính mời xem thiệp mời chi tiết tại đây:
+{LINK_THIEP}</textarea>
+        <div class="hint">Các thẻ <code>{TEN_KHACH}</code> và <code>{LINK_THIEP}</code> sẽ tự động thay bằng tên và link riêng của từng người.</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="generateBtn">⚡ Tạo Danh Sách Link Ngay</button>
+        <button class="btn btn-secondary" id="loadSampleBtn">📋 Thử dữ liệu mẫu</button>
+        <a href="index.html" class="btn btn-secondary" style="margin-left: auto;">🏠 Về Trang Thiệp Chính</a>
+      </div>
+    </div>
+
+    <!-- KẾT QUẢ TẠO LINK -->
+    <div class="card result-section" id="resultCard">
+      <div class="card-title" style="justify-content: space-between; flex-wrap: wrap;">
+        <span>🎉 2. Danh Sách Link Đã Tạo (<span id="totalGuestsCount">0</span> người)</span>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary btn-small" id="copyAllLinksBtn">📋 Copy Tất Cả Link</button>
+          <button class="btn btn-gold btn-small" id="toggleCodeBtn">💻 Xuất mã config.js</button>
+        </div>
+      </div>
+
+      <!-- Khối xuất mã config.js -->
+      <div id="codeSection" style="display: none; margin-bottom: 20px;">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px;">
+          Nếu muốn lưu vĩnh viễn các tên này vào code thiệp, sao chép đoạn mã dưới đây dán vào mục <code>guests: { ... }</code> trong file <code>config.js</code>:
+        </p>
+        <pre class="code-preview" id="configCodeBlock"></pre>
+        <button class="btn btn-primary btn-small" id="copyConfigCodeBtn" style="margin-top: 8px;">📋 Sao chép đoạn mã trên</button>
+      </div>
+
+      <!-- Danh sách từng thẻ khách mời -->
+      <div id="guestsOutputList"></div>
+    </div>
+
+    <!-- HỘP THƯ LỜI CHÚC LƯU TRONG FILE WISHES.JSON -->
+    <div class="card" id="wishesAdminCard">
+      <div class="card-title" style="justify-content: space-between; flex-wrap: wrap;">
+        <span>📬 3. Hộp Thư Lời Chúc (File wishes.json) — <strong id="totalWishesCount" style="color: var(--primary);">0</strong> lời chúc</span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn btn-secondary btn-small" id="refreshWishesBtn">🔄 Tải lại</button>
+          <button class="btn btn-primary btn-small" id="downloadJsonBtn">📥 Tải wishes.json</button>
+          <button class="btn btn-secondary btn-small" id="uploadJsonBtn">📤 Nạp file JSON</button>
+          <button class="btn btn-gold btn-small" id="toggleRawJsonBtn">💻 Xem mã JSON</button>
+        </div>
+      </div>
+
+      <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+
+      <!-- Khối hiển thị mã JSON thô -->
+      <div id="rawJsonSection" style="display: none; margin-bottom: 20px;">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;">
+          Nội dung định dạng JSON nguyên bản (bạn có thể copy dán vào file <code>wishes.json</code> trong thư mục dự án):
+        </p>
+        <pre class="code-preview" id="rawJsonBlock"></pre>
+        <button class="btn btn-secondary btn-small" id="copyRawJsonBtn" style="margin-top: 8px;">📋 Sao chép mã JSON</button>
+      </div>
+
+      <div class="info-callout" style="margin-bottom: 16px;">
+        📂 <strong>Cơ chế file JSON:</strong>
+        <ul style="margin-top: 6px; margin-left: 18px; font-size: 0.88rem; line-height: 1.6;">
+          <li>Nếu chạy bằng lệnh <code>node server.js</code>: Lời chúc tự động ghi thẳng vào file <strong><code>wishes.json</code></strong> trong máy bạn!</li>
+          <li>Bạn cũng có thể bấm <strong>"Tải wishes.json"</strong> để lưu về máy hoặc bấm <strong>"Nạp file JSON"</strong> để mở xem bất cứ lúc nào.</li>
+        </ul>
+      </div>
+
+      <div id="wishesEmptyNotice" style="text-align: center; padding: 30px 10px; color: var(--text-muted); font-size: 0.95rem;">
+        💌 Chưa có lời chúc nào trong file JSON. Khi khách gửi lời chúc, danh sách sẽ hiển thị tại đây!
+      </div>
+
+      <div id="wishesListContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </div>
+
+  </div>
+
+  <div class="toast-box" id="toast">Đã sao chép vào bộ nhớ tạm!</div>
+
+  <!-- Nạp cấu hình hiện tại nếu có -->
+  <script src="config.js"></script>
+  <script>
+    (function() {
+      const $ = id => document.getElementById(id);
+      const toast = $('toast');
+      let toastTimer = null;
+
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+      }
+
+      function copyText(text, successMsg = 'Đã sao chép! 📋') {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast(successMsg)).catch(() => fallbackCopy(text, successMsg));
+        } else {
+          fallbackCopy(text, successMsg);
+        }
+      }
+
+      function fallbackCopy(text, successMsg) {
+        const input = document.createElement('textarea');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        input.remove();
+        showToast(successMsg);
+      }
+
+      // Hàm chuyển tiếng Việt có dấu thành Slug không dấu
+      function slugify(text) {
+        return text
+          .toString()
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '') // bỏ dấu
+          .replace(/[đĐ]/g, 'd')
+          .replace(/[^a-z0-9\s-]/g, '') // bỏ ký tự đặc biệt
+          .trim()
+          .replace(/\s+/g, '-') // thay khoảng trắng bằng gạch ngang
+          .replace(/-+/g, '-');
+      }
+
+      // Tự động nhận diện Domain hiện tại
+      let defaultDomain = window.location.origin;
+      if (window.location.protocol === 'file:') {
+        defaultDomain = 'https://thiep-totnghiep-lai-trung-tin.vercel.app';
+      }
+      $('domainInput').value = defaultDomain;
+
+      // Nạp mẫu từ config.js nếu có sẵn
+      if (window.GRADUATION_INVITE && window.GRADUATION_INVITE.guests) {
+        const currentGuests = window.GRADUATION_INVITE.guests;
+        const currentList = Object.values(currentGuests);
+        if (currentList.length > 0) {
+          $('guestListInput').value = currentList.join('\n');
+        }
+      }
+
+      // Bấm nút dữ liệu mẫu
+      $('loadSampleBtn')?.addEventListener('click', () => {
+        $('guestListInput').value = [
+          'Anh Nam',
+          'Bác Ba và Gia đình',
+          'Thầy Hùng',
+          'Cô Lan',
+          'Bạn Thân Hải Đăng',
+          'Gia đình Chú Sáu'
+        ].join('\n');
+        showToast('Đã nạp danh sách mẫu!');
+      });
+
+      // Tạo danh sách link
+      function generateLinks() {
+        let domain = ($('domainInput').value || '').trim().replace(/\/+$/, '');
+        if (!domain) domain = defaultDomain;
+
+        const rawList = ($('guestListInput').value || '').split('\n').map(s => s.trim()).filter(Boolean);
+        if (rawList.length === 0) {
+          showToast('Vui lòng nhập ít nhất một tên khách mời!');
+          return;
+        }
+
+        const format = $('linkFormat').value;
+        const messageTpl = $('zaloMessageTpl').value;
+        const container = $('guestsOutputList');
+        container.innerHTML = '';
+
+        const configObject = {};
+        const allLinksText = [];
+
+        rawList.forEach(guestName => {
+          let slug = slugify(guestName);
+          configObject[slug] = guestName;
+
+          let guestUrl = '';
+          if (format === 'slug') {
+            guestUrl = `${domain}/${slug}`;
+          } else if (format === 'query-encoded') {
+            guestUrl = `${domain}/?to=${encodeURIComponent(guestName).replace(/%20/g, '+')}`;
+          } else {
+            // query-clean: Dùng dấu + thay khoảng trắng, giữ nguyên chữ tiếng Việt rõ ràng, link không bị đứt
+            const cleanQuery = guestName.replace(/\s+/g, '+');
+            guestUrl = `${domain}/?to=${cleanQuery}`;
+          }
+
+          allLinksText.push(`${guestName}: ${guestUrl}`);
+
+          // Tin nhắn Zalo cá nhân hóa
+          const personalMsg = messageTpl
+            .replace(/\{TEN_KHACH\}/g, guestName)
+            .replace(/\{LINK_THIEP\}/g, guestUrl);
+
+          // Card hiển thị
+          const card = document.createElement('div');
+          card.className = 'guest-card';
+          card.innerHTML = `
+            <div class="guest-header">
+              <span class="guest-name">💌 ${escapeHtml(guestName)}</span>
+              <span class="guest-slug">/${escapeHtml(slug)}</span>
+            </div>
+            <div class="guest-link-box">
+              <span class="guest-url">${escapeHtml(guestUrl)}</span>
+            </div>
+            <div class="guest-actions">
+              <button class="btn btn-secondary btn-small copy-link-btn">📋 Sao Chép Link</button>
+              <button class="btn btn-primary btn-small copy-msg-btn">💬 Copy Tin Nhắn Zalo</button>
+              <a href="${escapeHtml(guestUrl)}" target="_blank" rel="noopener" class="btn btn-secondary btn-small">👁️ Xem Thử</a>
+            </div>
+          `;
+
+          // Gán sự kiện nút
+          card.querySelector('.copy-link-btn').addEventListener('click', () => {
+            copyText(guestUrl, `Đã sao chép link của ${guestName}!`);
+          });
+
+          card.querySelector('.copy-msg-btn').addEventListener('click', () => {
+            copyText(personalMsg, `Đã sao chép lời mời gửi cho ${guestName}!`);
+          });
+
+          container.appendChild(card);
+        });
+
+        // Cập nhật số lượng
+        $('totalGuestsCount').textContent = rawList.length;
+
+        // Cập nhật khối mã config
+        const formattedJson = '  guests: ' + JSON.stringify(configObject, null, 4).replace(/\n/g, '\n  ') + ',';
+        $('configCodeBlock').textContent = formattedJson;
+
+        // Nút copy tất cả
+        $('copyAllLinksBtn').onclick = () => {
+          copyText(allLinksText.join('\n'), 'Đã sao chép toàn bộ danh sách link!');
+        };
+
+        $('copyConfigCodeBtn').onclick = () => {
+          copyText(formattedJson, 'Đã sao chép mã cấu hình config.js!');
+        };
+
+        $('resultCard').classList.add('active');
+        $('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showToast(`Đã tạo thành công ${rawList.length} liên kết! ✨`);
+      }
+
+      $('generateBtn')?.addEventListener('click', generateLinks);
+
+      // Toggle khối mã
+      $('toggleCodeBtn')?.addEventListener('click', () => {
+        const sec = $('codeSection');
+        if (sec.style.display === 'none') {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+
+      // =====================================================================
+      // QUẢN LÝ HỘP THƯ LỜI CHÚC TRONG FILE WISHES.JSON
+      // =====================================================================
+      let currentWishesData = [];
+
+      async function loadAdminWishes() {
+        let wishes = null;
+
+        // 1. Thử fetch từ API backend /api/wishes (khi chạy server.js)
+        try {
+          const res = await fetch('/api/wishes');
+          if (res.ok) {
+            wishes = await res.json();
+          }
+        } catch (e) {}
+
+        // 2. Thử fetch trực tiếp file tĩnh wishes.json
+        if (!wishes || wishes.length === 0) {
+          try {
+            const res = await fetch('wishes.json');
+            if (res.ok) {
+              const staticData = await res.json();
+              if (Array.isArray(staticData) && staticData.length > 0) {
+                wishes = staticData;
+              }
+            }
+          } catch (e) {}
+        }
+
+        // 3. Fallback sang localStorage nếu có
+        if (!wishes || wishes.length === 0) {
+          try {
+            const stored = localStorage.getItem('grad_wishes');
+            if (stored) wishes = JSON.parse(stored);
+          } catch (e) {}
+        }
+
+        currentWishesData = Array.isArray(wishes) ? wishes : [];
+
+        const container = $('wishesListContainer');
+        const emptyNotice = $('wishesEmptyNotice');
+        const countEl = $('totalWishesCount');
+        const rawBlock = $('rawJsonBlock');
+
+        if (countEl) countEl.textContent = currentWishesData.length;
+        if (rawBlock) rawBlock.textContent = JSON.stringify(currentWishesData, null, 2);
+
+        if (!currentWishesData || currentWishesData.length === 0) {
+          if (emptyNotice) emptyNotice.style.display = 'block';
+          if (container) container.innerHTML = '';
+          return;
+        }
+
+        if (emptyNotice) emptyNotice.style.display = 'none';
+        if (container) {
+          container.innerHTML = '';
+          currentWishesData.forEach(w => {
+            const card = document.createElement('div');
+            card.className = 'wish-admin-item';
+            card.innerHTML = `
+              <div class="wish-admin-head">
+                <span class="wish-admin-sender">👤 ${escapeHtml(w.name || 'Khách mời')}</span>
+                <span class="wish-admin-time">🕒 ${escapeHtml(w.time || 'Vừa xong')}</span>
+              </div>
+              <div class="wish-admin-body">${escapeHtml(w.message || '')}</div>
+            `;
+            container.appendChild(card);
+          });
+        }
+      }
+
+      $('refreshWishesBtn')?.addEventListener('click', () => {
+        loadAdminWishes();
+        showToast('Đã làm mới dữ liệu từ wishes.json! 🔄');
+      });
+
+      // Tải file wishes.json về máy tính
+      $('downloadJsonBtn')?.addEventListener('click', () => {
+        if (!currentWishesData || currentWishesData.length === 0) {
+          showToast('Chưa có lời chúc nào trong danh sách!');
+          return;
+        }
+        const jsonStr = JSON.stringify(currentWishesData, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'wishes.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Đã tải xuống file wishes.json! 📥');
+      });
+
+      // Nạp file wishes.json từ máy tính lên xem
+      $('uploadJsonBtn')?.addEventListener('click', () => {
+        $('jsonFileInput')?.click();
+      });
+
+      $('jsonFileInput')?.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+          try {
+            const parsed = JSON.parse(ev.target.result);
+            if (Array.isArray(parsed)) {
+              currentWishesData = parsed;
+              localStorage.setItem('grad_wishes', JSON.stringify(parsed));
+              loadAdminWishes();
+              showToast(`Đã nạp thành công ${parsed.length} lời chúc từ file JSON! ✨`);
+            } else {
+              showToast('File JSON phải là định dạng danh sách (mảng [])!');
+            }
+          } catch (err) {
+            showToast('Lỗi khi đọc file JSON! Vui lòng kiểm tra lại file.');
+          }
+        };
+        reader.readAsText(file, 'utf-8');
+      });
+
+      // Bật/tắt xem mã JSON thô
+      $('toggleRawJsonBtn')?.addEventListener('click', () => {
+        const sec = $('rawJsonSection');
+        if (sec.style.display === 'none') {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+
+      $('copyRawJsonBtn')?.addEventListener('click', () => {
+        const jsonStr = JSON.stringify(currentWishesData, null, 2);
+        copyText(jsonStr, 'Đã sao chép mã JSON vào bộ nhớ tạm! 📋');
+      });
+
+      // Tự động nạp lời chúc khi mở trang
+      loadAdminWishes();
+
+      function escapeHtml(str) {
+        return String(str || '').replace(/[&<>"']/g, m => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[m]);
+      }
+
+    })();
+  </script>
+</body>
+</html>

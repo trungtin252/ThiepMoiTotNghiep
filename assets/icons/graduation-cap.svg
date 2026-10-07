@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 92" role="img" aria-label="Mũ tốt nghiệp">
+  <path fill="#c9a969" d="M5 28 64 3l59 25-59 25L5 28Z"/>
+  <path fill="#c9a969" d="M28 43v24c0 12 17 22 36 22s36-10 36-22V43L64 58 28 43Z" opacity=".92"/>
+  <path fill="none" stroke="#c9a969" stroke-width="5" stroke-linecap="round" d="M111 33v30"/>
+  <circle cx="111" cy="69" r="6" fill="#c9a969"/>
+</svg>
